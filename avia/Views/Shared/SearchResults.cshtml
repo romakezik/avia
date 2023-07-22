@@ -1,0 +1,54 @@
+﻿@model avia.Models.TicketSearchResultsViewModel
+
+<h2>Ticket Search Results</h2>
+
+@if (!Model.Tickets.Any())
+{
+	<p>No results found.</p>
+}
+else
+{
+	<table>
+		<thead>
+			<tr>
+				<th>Flight Number</th>
+				<th>Airline</th>
+				<th>Departure City</th>
+				<th>Arrival City</th>
+				<th>Departure Date</th>
+				<th>Price</th>
+				<th>Status</th>
+				<th>Book</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ticket in Model.Tickets)
+			{
+				<tr>
+					<td>@ticket.FlightNumber</td>
+					<td>@ticket.AirlineName</td>
+					<td>@ticket.DepartureCity</td>
+					<td>@ticket.ArrivalCity</td>
+					<td>@ticket.DepartureDate</td>
+					<td>@ticket.Price</td>
+					<td>@ticket.Status</td>
+					@if (ticket.Status != "Недоступен")
+					{
+						<td>
+							<form method="post" asp-action="Book" asp-route-ticketId="@ticket.TicketID">
+								<button type="submit">Book</button>
+								@if (TempData["Message"] != null)
+								{
+									<div class="alert alert-success">@TempData["Message"]</div>
+								}
+
+							</form>
+						</td>
+					}
+
+				</tr>
+			}
+
+		</tbody>
+	</table>
+}

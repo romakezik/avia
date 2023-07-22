@@ -1,0 +1,18 @@
+﻿@model avia.Models.TicketBookingViewModel
+
+<h2>Booking Confirmation</h2>
+
+<p><strong>Flight details:</strong></p>
+<p><strong>Airline:</strong> @Model.AirlineName</p>
+<p><strong>Flight number:</strong> @Model.FlightNumber</p>
+<p><strong>Departure city:</strong> @Model.DepartureCity</p>
+<p><strong>Arrival city:</strong> @Model.ArrivalCity</p>
+<p><strong>Departure date:</strong> @Model.DepartureDate.ToString("dd/MM/yyyy HH:mm")</p>
+<p><strong>Price:</strong> @Model.Price USD</p>
+
+<hr />
+
+
+<div class="alert alert-success">
+    Thank you for booking with us! Your ticket has been confirmed.
+</div>

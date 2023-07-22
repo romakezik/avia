@@ -1,0 +1,30 @@
+﻿@model TicketBookingViewModel
+
+<h2>Confirm booking</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Airline:</strong> @Model.AirlineName</p>
+        <p><strong>Flight number:</strong> @Model.FlightNumber</p>
+        <p><strong>Departure city:</strong> @Model.DepartureCity</p>
+        <p><strong>Arrival city:</strong> @Model.ArrivalCity</p>
+        <p><strong>Departure date:</strong> @Model.DepartureDate.ToString("dd/MM/yyyy HH:mm")</p>
+    </div>
+    <div class="col-md-6">
+        <p><strong>Price:</strong> @Model.Price</p>
+    </div>
+</div>
+
+<form method="post" action="@Url.Action("BookTicketConfirmed")">
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Book now</button>
+        <a href="@Url.Action("Search")" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+`
+
+<h2>Booking confirmed</h2>
+<p>Your booking has been confirmed.</p>
+<a href="@Url.Action("Index", "Orders")" class="btn btn-primary">View Orders</a>
+
+

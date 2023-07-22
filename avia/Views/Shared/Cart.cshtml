@@ -1,0 +1,45 @@
+﻿@model CartViewModel
+
+<h1>Cart</h1>
+
+@if (Model.Order != null)
+{
+    <h2>Order Information</h2>
+    <p>Order ID: @Model.Order.OrdersID</p>
+    <p>User ID: @Model.Order.UserID</p>
+    <p>Order Date: @Model.Order.OrderDate</p>
+}
+
+@if (Model.OrderedTickets.Count > 0)
+{
+    <h2>Ordered Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderedTicket in Model.OrderedTickets)
+            {
+                <tr>
+                    <td>@orderedTicket.Ticket.TicketsID</td>
+                    <td>@orderedTicket.Quantity</td>
+                    <td>@orderedTicket.Ticket.Price</td>
+                    <td>@(orderedTicket.Quantity * orderedTicket.Ticket.Price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h2>Passport Information</h2>
+<form method="post" action="@Url.Action("ConfirmOrder", "Ticket")">
+    <input type="text" name="passportNumber" placeholder="Passport Number" required />
+    <input type="text" name="fullName" placeholder="Full Name" required />
+    <input type="submit" value="Confirm Order" />
+</form>
+
